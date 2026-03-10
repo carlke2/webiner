@@ -6,17 +6,16 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
 app.use(express.json());
 
 app.get("/api/health", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "API is running",
-  });
+  res.status(200).json({ success: true, message: "OK" });
 });
 
 app.use("/api", registrationRoutes);
